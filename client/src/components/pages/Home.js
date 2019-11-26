@@ -2,6 +2,7 @@ import React, { Fragment, useContext, useEffect } from 'react'
 import AuthContext from '../../context/auth/authContext';
 import AlertContext from '../../context/alert/alertContext';
 import WordSearch from '../words/WordSearch';
+import Words from '../words/Words';
 import Alerts from '../layout/Alerts';
 
 

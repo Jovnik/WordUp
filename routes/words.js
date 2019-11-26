@@ -25,7 +25,7 @@ router.get('/getwords', (req, res) => {
 
 });
 
-router.get('/', async(req, res) => {
+router.post('/', async(req, res) => {
 
     try {
         const headers = {
@@ -34,7 +34,8 @@ router.get('/', async(req, res) => {
             "app_key": appKey
         }
 
-        const word = 'bat';
+        const { word } = req.body;
+        // console.log(word);
 
         const url = `https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/${word}?fields=definitions%2Cexamples%2Cpronunciations&strictMatch=false`;
 

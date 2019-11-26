@@ -6,7 +6,7 @@ const Alerts = () => {
 
     const { alerts } = alertContext;
 
-    console.log('These are our alerts', alerts);
+    // console.log('These are our alerts', alerts);
     return (
         alerts.length > 0 && alerts.map(alert => (
             <div key={alert.id} className={`alert alert-${alert.type}`}>

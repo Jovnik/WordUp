@@ -1,12 +1,14 @@
 import React, { useState, useContext } from 'react';
 import AlertContext from '../../context/alert/alertContext';
-
+import WordContext from '../../context/words/wordContext';
 
 const WordSearch = () => {
 
     const alertContext = useContext(AlertContext);
+    const wordContext = useContext(WordContext);
 
     const { setAlert } = alertContext;
+    const { getResults } = wordContext;
 
     const [word, setWord] = useState('');
 
@@ -20,6 +22,7 @@ const WordSearch = () => {
             console.log('We enter here');
             setAlert('Please enter a word before searching', 'dark');
         } else {
+            getResults(word);
             console.log('We are going to find results for the word')
         }
     }
