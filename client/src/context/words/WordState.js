@@ -9,7 +9,8 @@ import {
 
 const WordState = props => {
     const initialState = {
-        
+        findingWords: false,
+        words: null
     };
 
     const [state, dispatch] = useReducer(wordReducer, initialState);
@@ -18,7 +19,8 @@ const WordState = props => {
     return (
         <WordContext.Provider
          value={{
-            
+            findingWords: state.findingWords,
+            words: state.words
          }}>
             { props.children }
         </WordContext.Provider>

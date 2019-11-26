@@ -11,7 +11,6 @@ const Register = (props) => {
     const { register, error, clearErrors, isAuthenticated, loadUser } = authContext;
 
     useEffect(() => {
-        console.log('Shouldnt we be going back to the home page?');
         console.log('isAuthenticated', isAuthenticated);
         if(isAuthenticated === null){
             loadUser();

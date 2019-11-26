@@ -1,10 +1,15 @@
 import React, { Fragment, useContext, useEffect } from 'react'
 import AuthContext from '../../context/auth/authContext';
+import AlertContext from '../../context/alert/alertContext';
+import WordSearch from '../words/WordSearch';
+import Alerts from '../layout/Alerts';
+
 
 
 const Home = () => {
     const authContext = useContext(AuthContext);
 
+    // const { error, setAlert } = alertContext;
     const { loadUser } = authContext;
 
     useEffect(() => {
@@ -14,7 +19,7 @@ const Home = () => {
 
     return (
         <Fragment>
-            <h1>This is the home page</h1>
+            <WordSearch />
         </Fragment>
     )
 }
