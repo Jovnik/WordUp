@@ -25,8 +25,6 @@ const AuthState = props => {
     };
 
     const [state, dispatch] = useReducer(authReducer, initialState);
-
-    // Our actions go here
    
     // Load user
     const loadUser = async () => {
@@ -39,7 +37,7 @@ const AuthState = props => {
 
             dispatch({
                 type: USER_LOADED,
-                payload: res.data   //this is the actual user data
+                payload: res.data   //this is the actual user data that we get from hitting the GET /api/auth endpoint
             })
         } catch (err) {
             dispatch({
@@ -61,7 +59,7 @@ const AuthState = props => {
 
             dispatch({
                 type: REGISTER_SUCCESS,
-                payload: res.data   //this will be the token
+                payload: res.data   //this will be the token - in the reducer we set the token in local storage
             })
 
             loadUser();
@@ -92,6 +90,7 @@ const AuthState = props => {
             loadUser();
 
         } catch (err) {
+            console.log(err.response.data);
             dispatch({
                 type: LOGIN_FAIL,
                 payload: err.response.data.msg

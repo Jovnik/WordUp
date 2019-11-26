@@ -18,7 +18,7 @@ export default (state, action) => {
             loading: false,
             user: action.payload
         };
-        case REGISTER_SUCCESS:  //register and login both return a token
+        case REGISTER_SUCCESS:  //register and login functions in AuthState both dispatch a token that is sent from the /api/users end point
         case LOGIN_SUCCESS:
         localStorage.setItem('token', action.payload.token);
         return {

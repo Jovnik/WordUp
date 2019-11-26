@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = require('../models/User');
+const config = require('config');
 
 // Router test
 router.get('/test', (req, res) => {
@@ -53,6 +54,7 @@ router.post('/',
                     id: user.id
                 }
             }
+
 
             jwt.sign(payload, config.get('jwtSecret'), 
                 {
