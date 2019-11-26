@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import AuthContext from '../../context/auth/authContext';
+import AlertContext from '../../context/alert/alertContext';
 
 const Register = () => {
 
