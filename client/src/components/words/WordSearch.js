@@ -8,7 +8,7 @@ const WordSearch = () => {
     const wordContext = useContext(WordContext);
 
     const { setAlert } = alertContext;
-    const { getResults } = wordContext;
+    const { getResults, setFindingWords } = wordContext;
 
     const [word, setWord] = useState('');
 
@@ -23,7 +23,8 @@ const WordSearch = () => {
             setAlert('Please enter a word before searching', 'dark');
         } else {
             getResults(word);
-            console.log('We are going to find results for the word')
+            console.log('We are going to find results for the word');
+            // setWord('');
         }
     }
 

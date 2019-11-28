@@ -9,6 +9,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Alerts from './components/layout/Alerts';
 import PrivateRoute from './components/routing/PrivateRoute';
+import MyWords from './components/words/MyWords';
 
 
 // States
@@ -35,6 +36,7 @@ const App = () => {
               <Alerts />
               <Switch>
                 <PrivateRoute exact path='/' component={Home} />
+                <PrivateRoute exact path='/mywords' component={MyWords} />
                 <Route exact path='/register' component={Register}/>
                 <Route exact path='/login' component={Login}/>
               </Switch>

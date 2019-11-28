@@ -2,28 +2,26 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const config = require('config');
+const mongoose = require('mongoose');
 // const { appID, appKey } = config.get ??
 const appID = config.get('appID');
 const appKey = config.get('appKey');
+const Word = require('../models/Word');
+const auth = require('../middleware/auth');
 
-router.get('/getwords', (req, res) => {
 
-    // let url = `https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/adroit?fields=definitions&strictMatch=false`
+router.get('/getwords', auth, async(req, res) => {
+    console.log('server');
 
-    // let headers = {"Accept": "application/json",
-    //                 "app_id": app_id,
-    //                 "app_key": app_key};
-
-    // let response = await fetch(url, {headers: headers});
-    // let data = await response.json();
-    // word = data.results;
-
-    // console.log(word[0]);
-    console.log('does this even get hit??');
-
-    res.json({ msg: 'Hello' });
-
+    try {
+        const words = await Word.find({ user: req.user.id }).sort({ date: -1 });
+        res.json(words);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
 });
+
 
 router.post('/', async(req, res) => {
 
@@ -84,6 +82,40 @@ router.post('/', async(req, res) => {
         console.log(err.message);
         res.status(400).json({ msg: 'There was an error' });
     }
+});
+
+
+router.post('/addWord', auth, async(req, res) => {
+    const { word } = req.body;
+
+    try {
+        let addWord = await Word.findOne({user: req.user.id, name: word.name, definitions: word.definitions});
+
+        if(addWord){   // if the user already has that word
+            console.log('That word already exists');
+            return res.json({ msg: 'You have already added that word', type: 'dark' })
+        }
+        
+        const newWord = {};
+        newWord.user = req.user.id;
+        newWord.name = word.name;
+        newWord.partOfSpeech = word.partOfSpeech;
+        newWord.definitions = word.definitions;
+        if(word.examples) newWord.examples = word.examples[0].text;
+
+        addWord = new Word(newWord);
+        
+        await addWord.save();
+
+        res.json({ msg: 'Word added successfully', type: 'success' })
+        
+    } catch (err) {
+        res.json({ msg: 'There was an error'})
+        
+    }
+
+
+
 })
 
 module.exports = router;

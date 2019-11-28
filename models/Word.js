@@ -9,18 +9,21 @@ const WordSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    email: {
+    partOfSpeech: {
         type: String,
         required: true
     },
-    password: {
-        type: String,
+    definitions: {
+        type: [String],
         required: true
+    },
+    examples: {
+        type: String
     },
     date: {
         type: Date,
         default: Date.now
-    }   
+    }
 })
 
 module.exports = mongoose.model('word', WordSchema);

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import WordContext from '../../context/words/wordContext';
 import axios from 'axios';
 
-const WordItem = ({ word }) => {
+const MyWordsItem = ({ word }) => {
     const wordContext = useContext(WordContext);
 
     const { addWord } = wordContext;
@@ -18,15 +18,13 @@ const WordItem = ({ word }) => {
     return (
         <div className="word-container">
             <div className="word-info">
-                <h2 className="text-primary">{word.name} <i>({word.partOfSpeech})</i></h2>
-                <p>{word.definitions[0]}</p>
-                {word.examples && <p>eg. {word.examples[0].text}</p>}
-            </div>
-            <div className="word-add">
-                <i onClick={handleClick} className="fas fa-plus fa-2x add-btn"></i>
+                <h3 className="text-primary">{word.name}</h3>
+                <p>Part of Speech: <b>{word.partOfSpeech}</b></p>
+                <p><b>{word.definitions[0]}</b></p>
+                { word.examples && <p>eg. <i>{word.examples}</i></p> }
             </div>
         </div>
     )
 }
 
-export default WordItem
+export default MyWordsItem

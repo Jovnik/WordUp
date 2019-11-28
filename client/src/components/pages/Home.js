@@ -5,8 +5,6 @@ import WordSearch from '../words/WordSearch';
 import Words from '../words/Words';
 import Alerts from '../layout/Alerts';
 
-
-
 const Home = () => {
     const authContext = useContext(AuthContext);
 
@@ -21,6 +19,7 @@ const Home = () => {
     return (
         <Fragment>
             <WordSearch />
+            <Words />
         </Fragment>
     )
 }

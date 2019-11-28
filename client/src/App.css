@@ -49,6 +49,45 @@ img {
   padding: 0 2rem;
 }
 
+.word-container {
+  /* border: 1px solid grey; */
+  margin-top: 0.5rem;
+  padding: 1rem 2rem;
+  background-color: #E8F0FE;
+  transition: 0.5s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* WordItem styling */
+.word-container:hover {
+  background-color: rgb(197, 218, 255)
+}
+
+.word-container h2, .word-container h3 {
+  text-align: left;
+}
+
+.show-words {
+  /* border: 1px solid green; */
+  margin-bottom: 2rem;
+}
+
+/* .word-info, .word-add {
+} */
+
+.word-add {
+  display: flex;
+  align-items: center;
+}
+
+.add-btn {
+  color: green;
+  cursor: pointer;
+}
+
 /* Text Styles*/
 .x-large {
   font-size: 4rem;
