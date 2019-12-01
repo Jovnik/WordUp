@@ -111,10 +111,33 @@ router.post('/addWord', auth, async(req, res) => {
         
     } catch (err) {
         res.json({ msg: 'There was an error'})
-        
     }
+})
 
+router.post('/remove-word', auth, async(req, res) => {
+    const { wordID, wordName } = req.body;
 
+    try {
+        let word = await Word.findById(wordID);
+        console.log(word);
+
+        if(!word) return res.status(404).json({ msg: 'Word not found' });
+
+        if(word.user.toString() !== req.user.id ){
+            return res.status(401).json({ msg: 'Not authorized' })
+        }
+
+        await Word.findByIdAndRemove(wordID);
+
+        res.json({ msg: `The word ${wordName} has been removed successfully`, type: 'success' });
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+    
+    // console.log(req.body);
+    // console.log(id);
 
 })
 

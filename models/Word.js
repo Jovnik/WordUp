@@ -20,6 +20,9 @@ const WordSchema = mongoose.Schema({
     examples: {
         type: String
     },
+    importance: {
+        type: String    //just came across the word, getting comfortable, its part of my vocabulary now
+    },
     date: {
         type: Date,
         default: Date.now

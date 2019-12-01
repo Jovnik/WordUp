@@ -59,6 +59,8 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  transition: 0.5s;
 }
 
 /* WordItem styling */
@@ -71,22 +73,47 @@ img {
 }
 
 .show-words {
-  /* border: 1px solid green; */
+  border: 1px solid green;
   margin-bottom: 2rem;
+}
+
+.sort-options {
+  border: 1px solid pink;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
 }
 
 /* .word-info, .word-add {
 } */
 
-.word-add {
+.word-info {
+  /* border: 1px solid green; */
+  width: 80%;
+}
+
+.word-add, .word-remove {
   display: flex;
   align-items: center;
+  /* opacity: 0; */
+  /* transition: 1s; */
 }
 
 .add-btn {
   color: green;
   cursor: pointer;
 }
+
+.remove-btn {
+  color: rgb(240, 87, 87);
+  /* cursor: pointer; */
+  opacity: 0;
+  transition: 0.5s;
+}
+
+
 
 /* Text Styles*/
 .x-large {

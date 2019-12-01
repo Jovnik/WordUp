@@ -2,7 +2,8 @@ import {
     FETCH_WORDS,
     FETCH_WORDS_ERROR,
     SET_FINDING_WORDS,
-    GET_WORDS
+    GET_WORDS,
+    DELETE_WORD
 } from '../types';
 
 export default (state, action) => {
@@ -26,6 +27,11 @@ export default (state, action) => {
                 words: [],
                 findingWords: false,
                 searched: true
+            }
+        case DELETE_WORD:
+            return {
+                ...state,
+                myWords: state.myWords.filter(word => word._id !== action.payload)
             }
         case SET_FINDING_WORDS:
             return {

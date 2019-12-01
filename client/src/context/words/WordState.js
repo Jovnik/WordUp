@@ -8,7 +8,8 @@ import {
     FETCH_WORDS,
     FETCH_WORDS_ERROR,
     SET_FINDING_WORDS,
-    GET_WORDS
+    GET_WORDS,
+    DELETE_WORD
 } from '../types';
 
 const WordState = props => {
@@ -83,6 +84,29 @@ const WordState = props => {
         }
     }
 
+    const removeWord = async(wordID, wordName) => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        try {
+            const resp = await axios.post('/api/words/remove-word', { wordID, wordName }, config);
+
+            const alert = { ... resp.data };
+
+            setAlert(alert.msg, alert.type);
+
+            dispatch({
+                type: DELETE_WORD,
+                payload: wordID
+            })
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
+
     const getMyWords = async() => {
         try {
             const resp = await axios.get('/api/words/getwords');
@@ -108,7 +132,8 @@ const WordState = props => {
             loadingWords: state.loadingWords,
             getResults,
             getMyWords,
-            addWord
+            addWord,
+            removeWord
          }}>
             { props.children }
         </WordContext.Provider>
